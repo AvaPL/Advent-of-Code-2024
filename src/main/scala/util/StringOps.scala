@@ -6,18 +6,18 @@ import scala.util.matching.Regex
 object StringOps {
 
   extension (string: String) {
-    def splitByRegex(regex: String): Seq[String] =
-      string.split(regex).toSeq
+    def splitByRegex(regex: String): List[String] =
+      string.split(regex).toList
 
-    def splitBy(delimiter: String): Seq[String] = {
+    def splitBy(delimiter: String): List[String] = {
       val quotedDelimiter = Regex.quote(delimiter)
       splitByRegex(quotedDelimiter)
     }
 
-    def splitLines: Seq[String] =
+    def splitLines: List[String] =
       splitBy("\n")
 
-    def splitBlocks: Seq[String] =
+    def splitBlocks: List[String] =
       splitBy("\n\n")
   }
 }
