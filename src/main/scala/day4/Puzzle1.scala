@@ -37,10 +37,10 @@ private def countLowerLeftUpperRightDiagonalXmas(wordSearch: WordSearch) = {
   }.map(_.mkString).toVector
   val tiltedWordSearch2 = {
     for {
-      i <- wordSearch.indices.drop(1)
+      i <- wordSearch.indices.reverse.drop(1)
     } yield for {
-      j <- 0 until wordSearch.length - i
-    } yield wordSearch(wordSearch.length - j - 1)(i + j)
+      j <- 0 to i
+    } yield wordSearch(wordSearch.size - 1 - j)(wordSearch.size - 1 - i + j)
   }.map(_.mkString).toVector
   val tiltedWordSearch = tiltedWordSearch1 ++ tiltedWordSearch2
 
