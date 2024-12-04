@@ -8,10 +8,11 @@ package day4
 }
 
 private def getXAreas(wordSearch: WordSearch): List[WordSearch] = {
+  val areaSize = 3
   for {
-    i <- 0 to wordSearch.length - 3
-    j <- 0 to wordSearch.length - 3
-  } yield wordSearch.slice(i, i + 3).map(_.slice(j, j + 3))
+    i <- 0 to wordSearch.length - areaSize
+    j <- 0 to wordSearch.length - areaSize
+  } yield wordSearch.slice(i, i + areaSize).map(_.slice(j, j + areaSize))
 }.toList
 
 private def isXmas(xArea: WordSearch) = {
