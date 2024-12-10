@@ -21,7 +21,7 @@ private def evaluateTrailhead(topographicMap: TopographicMap, rowIndex: Int, col
   def heightAt(rowIndex: Int, columnIndex: Int): Option[Height] =
     topographicMap.lift(rowIndex).flatMap(_.lift(columnIndex))
 
-  def calculateScore(currentRowIndex: Int, currentColumnIndex: Int): Set[(Int, Int)] = {
+  def reachable9Indices(currentRowIndex: Int, currentColumnIndex: Int): Set[(Int, Int)] = {
     val currentHeight = topographicMap(currentRowIndex)(currentColumnIndex)
     if (currentHeight == 9)
       Set((currentRowIndex, currentColumnIndex))
@@ -35,10 +35,10 @@ private def evaluateTrailhead(topographicMap: TopographicMap, rowIndex: Int, col
         val adjacentHeight = heightAt(adjacentRowIndex, adjacentColumnIndex)
         adjacentHeight.contains(currentHeight + 1)
       }
-      adjacent1HigherHeights.flatMap(calculateScore)
+      adjacent1HigherHeights.flatMap(reachable9Indices)
     }
   }
 
-  val score = calculateScore(rowIndex, columnIndex).size
+  val score = reachable9Indices(rowIndex, columnIndex).size
   Option.when(score > 0)(Trailhead(0, score)) // if 0 then it's not a trailhead
 }
