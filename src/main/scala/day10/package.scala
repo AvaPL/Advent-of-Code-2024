@@ -5,4 +5,3 @@ type Height = Int
 type TopographicMap = Vector[Vector[Height]]
 
 case class Trailhead(height: Height, score: Int)
-
