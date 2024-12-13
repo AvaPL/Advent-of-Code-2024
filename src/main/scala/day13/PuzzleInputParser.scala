@@ -16,7 +16,7 @@ Prize: X=$prizeX, Y=$prizeY""" =>
         Arcade(
           Button(aMovementX.toInt, aMovementY.toInt),
           Button(bMovementX.toInt, bMovementY.toInt),
-          Prize(prizeX.toInt, prizeY.toInt)
+          Prize(prizeX.toLong, prizeY.toLong)
         )
     }
 }

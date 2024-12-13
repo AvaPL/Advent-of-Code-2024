@@ -7,8 +7,8 @@ case class Button(
 )
 
 case class Prize(
-    xPosition: Int,
-    yPosition: Int
+    xPosition: Long,
+    yPosition: Long
 )
 
 case class Arcade(
