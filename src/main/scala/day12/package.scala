@@ -7,8 +7,9 @@ import scala.util.chaining.*
 type GardenPlot = Char
 type FarmMap = Vector[Vector[GardenPlot]]
 
-enum Border:
+enum Border {
   case Top, Right, Bottom, Left
+}
 
 case class GardenPlotWithBorders(
     gardenPlot: GardenPlot,

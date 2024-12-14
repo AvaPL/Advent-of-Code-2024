@@ -3,21 +3,13 @@ package day14
 
 @main def puzzle1(): Unit = {
   val robots = PuzzleInputParser.parsedInput
-  val spaceWidth = 101
-  val spaceHeight = 103
   val simulationSeconds = 100
-  val robotPositionsAfterSimulation = robots.map(calculatePositionAfterSeconds(simulationSeconds, spaceWidth, spaceHeight))
-  val result = calculateSafetyFactor(robotPositionsAfterSimulation, spaceWidth, spaceHeight)
+  val robotPositionsAfterSimulation = robots.map(calculatePositionAfterSeconds(_, simulationSeconds))
+  val result = calculateSafetyFactor(robotPositionsAfterSimulation)
   println(result)
 }
 
-private def calculatePositionAfterSeconds(seconds: Int, spaceWidth: Int, spaceHeight: Int)(robot: Robot) =
-  Position(
-    row = math.floorMod(robot.position.row + robot.velocity.row * seconds, spaceHeight),
-    column = math.floorMod(robot.position.column + robot.velocity.column * seconds, spaceWidth)
-  )
-
-private def calculateSafetyFactor(positions: List[Position], spaceWidth: Int, spaceHeight: Int) = {
+private def calculateSafetyFactor(positions: List[Position]) = {
   val rowQuadrantBoundary = spaceHeight / 2
   val columnQuadrantBoundary = spaceWidth / 2
   val quadrants = positions.foldLeft((0, 0, 0, 0)) {
