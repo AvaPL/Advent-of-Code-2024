@@ -16,29 +16,23 @@ private def doRobotMoves(
     robotDirections: List[Direction]
 ) = {
   val currentWarehouseMap = mutable.ArrayBuffer.from(warehouseMap.map(mutable.ArrayBuffer.from))
-  def warehouseMapElementAt(position: Position) = currentWarehouseMap(position.row)(position.column)
   var currentRobotPosition = initialRobotPosition
   val remainingRobotDirections = mutable.Stack.from(robotDirections)
 
   while (remainingRobotDirections.nonEmpty) {
-//    println(s"Current robot position: $currentRobotPosition")
     val currentDirection = remainingRobotDirections.pop()
-//    println(s"Moving in direction: $currentDirection")
     var currentPosition = currentRobotPosition.move(currentDirection)
     var nextFreeSpace = Option.empty[Position]
     var encounteredBox = false
     var encounteredWall = false
     while (nextFreeSpace.isEmpty && !encounteredWall) {
-      warehouseMapElementAt(currentPosition) match {
+      currentWarehouseMap(currentPosition.row)(currentPosition.column) match {
         case FreeSpace =>
-//          println(s"Found a free space at $currentPosition")
           nextFreeSpace = Some(currentPosition)
         case Box =>
-//          println(s"Encountered a box at $currentPosition")
           encounteredBox = true
           currentPosition = currentPosition.move(currentDirection)
         case Wall =>
-//          println(s"Encountered wall at $currentPosition")
           encounteredWall = true
       }
     }
@@ -50,15 +44,6 @@ private def doRobotMoves(
           currentWarehouseMap(nextFreeSpaceRow)(nextFreeSpaceColumn) = Box
         }
     }
-//    currentWarehouseMap.foreach { row =>
-//      println {
-//        row.map {
-//          case Wall => '#'
-//          case FreeSpace => '.'
-//          case Box => 'O'
-//        }.mkString
-//      }
-//    }
   }
 
   currentWarehouseMap.map(_.toVector).toVector
