@@ -4,6 +4,7 @@ package day15.puzzle1
 import day15.*
 import util.InputParser
 import util.StringOps.*
+import WarehouseMapElement.*
 
 object PuzzleInputParser extends InputParser[(WarehouseMap, Position, List[Direction])](day = 15) {
 

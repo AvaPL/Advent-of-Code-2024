@@ -2,6 +2,7 @@ package io.github.avapl
 package day15.puzzle1
 
 import day15.{Direction, Position}
+import WarehouseMapElement.*
 
 import scala.collection.mutable
 
