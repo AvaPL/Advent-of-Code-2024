@@ -1,9 +1,9 @@
 package io.github.avapl
 package day16
 
-import scala.collection.mutable
+import day16.MazeElement.FreeSpace
 
-type Path = List[Position]
+import scala.collection.mutable
 
 @main def puzzle2(): Unit = {
   val (maze, start, end) = PuzzleInputParser.parsedInput
@@ -12,11 +12,9 @@ type Path = List[Position]
   println(result)
 }
 
-def dijkstraShortestPaths(maze: Maze, start: Start, end: End) = {
+private type Path = List[Position]
 
-  def mazeElementAt(position: Position): Option[MazeElement] =
-    maze.lift(position.row).flatMap(_.lift(position.column))
-
+private def dijkstraShortestPaths(maze: Maze, start: Start, end: End) = {
   val distances = mutable.ArrayBuffer.fill(maze.length, maze.head.length)(Map.empty[Direction, Score])
   val shortestPaths = mutable.ListBuffer.empty[Path]
   val queue = mutable.PriorityQueue.empty[(Position, Direction, Path, Score)](Ordering.by {
@@ -31,24 +29,24 @@ def dijkstraShortestPaths(maze: Maze, start: Start, end: End) = {
       distances(currentPosition.row)(currentPosition.column) = currentDistances.updated(currentDirection, currentScore)
       if (currentPosition == end) {
         val currentSmallestScore = currentDistances.values.minOption.getOrElse(Int.MaxValue)
-        if (currentScore < currentSmallestScore)
+        if (currentScore < currentSmallestScore) // found a shorter path
           shortestPaths.clear()
         if (currentScore <= currentSmallestScore)
           shortestPaths += currentPath
-      } else {
-        val nextPositions = List(
-          (currentPosition, currentDirection.rotateClockwise, currentPath, currentScore + 1000),
-          (currentPosition, currentDirection.rotateCounterClockwise, currentPath, currentScore + 1000)
-        ).filter {
-          case (currentPosition, newDirection, _, _) =>
-            mazeElementAt(currentPosition.move(newDirection)).contains(MazeElement.FreeSpace)
-        } ++ Some(currentPosition.move(currentDirection))
-          .filter(mazeElementAt(_).contains(MazeElement.FreeSpace))
-          .map { nextPosition =>
-            (nextPosition, currentDirection, nextPosition :: currentPath, currentScore + 1)
-          }
-        queue.enqueue(nextPositions*)
-      }
+      } else
+        queue.enqueue(
+          List(
+            (currentDirection, currentScore + stepScore),
+            (currentDirection.rotateClockwise, currentScore + rotationScore + stepScore),
+            (currentDirection.rotateCounterClockwise, currentScore + rotationScore + stepScore)
+          ).flatMap {
+            case (nextDirection, nextScore) =>
+              val nextPosition = currentPosition.move(nextDirection)
+              Option.when(maze.elementAt(nextPosition).contains(FreeSpace)) {
+                (nextPosition, nextDirection, nextPosition :: currentPath, nextScore)
+              }
+          }*
+        )
     }
   }
 

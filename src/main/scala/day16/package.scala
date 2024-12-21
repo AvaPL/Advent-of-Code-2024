@@ -1,8 +1,6 @@
 package io.github.avapl
 package day16
 
-import scala.collection.mutable
-
 type Maze = Vector[Vector[MazeElement]]
 type Start = Position
 type End = Position
@@ -41,4 +39,12 @@ case object Down extends Direction {
 
 case object Left extends Direction {
   override lazy val rotateClockwise: Direction = Up
+}
+
+val stepScore = 1
+val rotationScore = 1000
+
+extension (maze: Maze) {
+  def elementAt(position: Position): Option[MazeElement] =
+    maze.lift(position.row).flatMap(_.lift(position.column))
 }
