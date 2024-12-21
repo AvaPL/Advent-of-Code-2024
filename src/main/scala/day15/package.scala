@@ -1,13 +1,6 @@
 package io.github.avapl
 package day15
 
-type WarehouseMap = Vector[Vector[WarehouseMapElement]]
-
-sealed trait WarehouseMapElement
-case object Wall extends WarehouseMapElement
-case object FreeSpace extends WarehouseMapElement
-case object Box extends WarehouseMapElement
-
 sealed trait Direction
 case object Up extends Direction
 case object Right extends Direction

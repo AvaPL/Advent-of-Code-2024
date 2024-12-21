@@ -1,5 +1,7 @@
 package io.github.avapl
-package day15
+package day15.puzzle1
+
+import day15.{Direction, Position}
 
 import scala.collection.mutable
 
