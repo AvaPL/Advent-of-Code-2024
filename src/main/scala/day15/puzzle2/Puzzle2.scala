@@ -22,7 +22,7 @@ private def doRobotMoves(
   var currentRobotPosition = initialRobotPosition
   val remainingRobotDirections = mutable.Stack.from(robotDirections)
 
-  def canBoxBeMovedVertically(from: Position, direction: Up.type | Down.type): Boolean =
+  def canBoxBeMovedVertically(from: Position, direction: VerticalDirection): Boolean =
     currentWarehouseMap(from.row)(from.column) match {
       case BoxLeft =>
         val to = from.move(direction)
@@ -43,7 +43,7 @@ private def doRobotMoves(
         canBoxBeMovedVertically(from.move(Left), direction)
     }
 
-  def moveBoxVertically(from: Position, direction: Up.type | Down.type): Unit =
+  def moveBoxVertically(from: Position, direction: VerticalDirection): Unit =
     currentWarehouseMap(from.row)(from.column) match {
       case BoxLeft =>
         val fromRight = from.move(Right)
@@ -62,7 +62,7 @@ private def doRobotMoves(
     }
 
   @tailrec
-  def canBoxBeMovedHorizontally(from: Position, direction: Left.type | Right.type): Boolean = {
+  def canBoxBeMovedHorizontally(from: Position, direction: HorizontalDirection): Boolean = {
     val to = from.move(direction)
     val toElement = currentWarehouseMap(to.row)(to.column)
     (currentWarehouseMap(from.row)(from.column), direction) match {
@@ -77,7 +77,7 @@ private def doRobotMoves(
     }
   }
 
-  def moveBoxHorizontally(from: Position, direction: Left.type | Right.type): Unit = {
+  def moveBoxHorizontally(from: Position, direction: HorizontalDirection): Unit = {
     val to = from.move(direction)
     if (currentWarehouseMap(to.row)(to.column) != FreeSpace)
       moveBoxHorizontally(to, direction)
@@ -95,11 +95,12 @@ private def doRobotMoves(
         currentRobotPosition = currentPosition
       case box: BoxPart =>
         currentDirection match {
-          case currentDirection @ (Up | Down) if canBoxBeMovedVertically(currentPosition, currentDirection) =>
-            moveBoxVertically(currentPosition, currentDirection)
+          case verticalDirection: VerticalDirection if canBoxBeMovedVertically(currentPosition, verticalDirection) =>
+            moveBoxVertically(currentPosition, verticalDirection)
             currentRobotPosition = currentPosition
-          case currentDirection @ (Right | Left) if canBoxBeMovedHorizontally(currentPosition, currentDirection) =>
-            moveBoxHorizontally(currentPosition, currentDirection)
+          case horizontalDirection: HorizontalDirection
+              if canBoxBeMovedHorizontally(currentPosition, horizontalDirection) =>
+            moveBoxHorizontally(currentPosition, horizontalDirection)
             currentRobotPosition = currentPosition
           case _ =>
         }

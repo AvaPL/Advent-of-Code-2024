@@ -2,10 +2,12 @@ package io.github.avapl
 package day15
 
 sealed trait Direction
-case object Up extends Direction
-case object Right extends Direction
-case object Down extends Direction
-case object Left extends Direction
+sealed trait HorizontalDirection extends Direction
+case object Left extends HorizontalDirection
+case object Right extends HorizontalDirection
+sealed trait VerticalDirection extends Direction
+case object Up extends VerticalDirection
+case object Down extends VerticalDirection
 
 case class Position(row: Int, column: Int) {
 
