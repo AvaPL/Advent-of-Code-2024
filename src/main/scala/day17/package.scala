@@ -12,9 +12,9 @@ extension (string: String) {
 }
 
 case class Registers(
-    A: Int,
-    B: Int,
-    C: Int
+    A: BigInt,
+    B: BigInt,
+    C: BigInt
 )
 
 type Program = Vector[ThreeBit]
@@ -57,33 +57,30 @@ object Instruction {
 
 case object adv extends Instruction {
   override def evaluate(registers: Registers, operand: ThreeBit): EvaluationResult = {
-    val numerator = registers.A
-    val denominator = 1 << ComboOperand(operand).value(registers)
-    val result = numerator / denominator
+    // Right shift is equivalent to division by n-th power of 2
+    val result = registers.A >> ComboOperand(operand).value(registers).toInt
     EvaluationResult(registers.copy(A = result))
   }
 }
 
 case object bxl extends Instruction {
   override def evaluate(registers: Registers, operand: ThreeBit): EvaluationResult = {
-    val left = registers.B
-    val right = LiteralOperand(operand).value
-    val result = left ^ right
+    val result = registers.B ^ LiteralOperand(operand).value
     EvaluationResult(registers.copy(B = result))
   }
 }
 
 case object bst extends Instruction {
   override def evaluate(registers: Registers, operand: ThreeBit): EvaluationResult = {
-    val value = ComboOperand(operand).value(registers)
-    val result = math.floorMod(value, 8)
+    // Bitwise AND with 0b111 is equivalent to modulo 8
+    val result = ComboOperand(operand).value(registers) & 0b111
     EvaluationResult(registers.copy(B = result))
   }
 }
 
 case object jnz extends Instruction {
   override def evaluate(registers: Registers, operand: ThreeBit): EvaluationResult =
-    if (registers.A == 0)
+    if (registers.A == 0) 
       EvaluationResult(registers)
     else {
       val targetInstructionPointer = LiteralOperand(operand).value
@@ -93,35 +90,31 @@ case object jnz extends Instruction {
 
 case object bxc extends Instruction {
   override def evaluate(registers: Registers, operand: ThreeBit): EvaluationResult = {
-    val left = registers.B
-    val right = registers.C
-    val result = left ^ right
+    val result = registers.B ^ registers.C
     EvaluationResult(registers.copy(B = result))
   }
 }
 
 case object out extends Instruction {
   override def evaluate(registers: Registers, operand: ThreeBit): EvaluationResult = {
-    val value = ComboOperand(operand).value(registers)
-    val result: ThreeBit = math.floorMod(value, 8).toThreeBit
+    // Bitwise AND with 0b111 is equivalent to modulo 8
+    val result: ThreeBit = (ComboOperand(operand).value(registers) & 0b111).toInt.toThreeBit
     EvaluationResult(registers, output = Output(result))
   }
 }
 
 case object bdv extends Instruction {
   override def evaluate(registers: Registers, operand: ThreeBit): EvaluationResult = {
-    val numerator = registers.A
-    val denominator = 1 << ComboOperand(operand).value(registers)
-    val result = numerator / denominator
+    // Right shift is equivalent to division by n-th power of 2
+    val result = registers.A >> ComboOperand(operand).value(registers).toInt
     EvaluationResult(registers.copy(B = result))
   }
 }
 
 case object cdv extends Instruction {
   override def evaluate(registers: Registers, operand: ThreeBit): EvaluationResult = {
-    val numerator = registers.A
-    val denominator = 1 << ComboOperand(operand).value(registers)
-    val result = numerator / denominator
+    // Right shift is equivalent to division by n-th power of 2
+    val result = registers.A >> ComboOperand(operand).value(registers).toInt
     EvaluationResult(registers.copy(C = result))
   }
 }
@@ -131,7 +124,7 @@ sealed trait Operand
 case class LiteralOperand(value: ThreeBit) extends Operand
 
 case class ComboOperand(id: ThreeBit) extends Operand {
-  def value(registers: Registers): Int =
+  def value(registers: Registers): BigInt =
     id match {
       case literal @ (0 | 1 | 2 | 3) => literal
       case 4                         => registers.A
@@ -139,4 +132,22 @@ case class ComboOperand(id: ThreeBit) extends Operand {
       case 6                         => registers.C
       case 7                         => ??? // reserved
     }
+}
+
+def runProgram(initialRegisters: Registers, program: Program): Output = {
+  var registers = initialRegisters
+  var instructionPointer = 0
+  var output = Output.empty
+
+  while (instructionPointer + 1 < program.length) {
+    val instructionOpcode: ThreeBit = program(instructionPointer)
+    val instruction = Instruction.ofOpcode(instructionOpcode)
+    val operand: ThreeBit = program(instructionPointer + 1)
+    val EvaluationResult(newRegisters, instructionPointerChange, newOutput) = instruction.evaluate(registers, operand)
+    registers = newRegisters
+    instructionPointer = instructionPointerChange(instructionPointer)
+    output = output ++ newOutput
+  }
+
+  output
 }
