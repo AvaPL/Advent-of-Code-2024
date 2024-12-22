@@ -3,18 +3,18 @@ package day17
 
 type ThreeBit = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7
 
-extension (int: Int) {
-  def toThreeBit: ThreeBit = int.asInstanceOf[ThreeBit]
+extension (long: Long) {
+  def toThreeBit: ThreeBit = long.asInstanceOf[ThreeBit]
 }
 
 extension (string: String) {
-  def toThreeBit: ThreeBit = string.toInt.toThreeBit
+  def toThreeBit: ThreeBit = string.toLong.toThreeBit
 }
 
 case class Registers(
-    A: BigInt,
-    B: BigInt,
-    C: BigInt
+    A: Long,
+    B: Long,
+    C: Long
 )
 
 type Program = Vector[ThreeBit]
@@ -98,7 +98,7 @@ case object bxc extends Instruction {
 case object out extends Instruction {
   override def evaluate(registers: Registers, operand: ThreeBit): EvaluationResult = {
     // Bitwise AND with 0b111 is equivalent to modulo 8
-    val result: ThreeBit = (ComboOperand(operand).value(registers) & 0b111).toInt.toThreeBit
+    val result: ThreeBit = (ComboOperand(operand).value(registers) & 0b111).toThreeBit
     EvaluationResult(registers, output = Output(result))
   }
 }
@@ -124,7 +124,7 @@ sealed trait Operand
 case class LiteralOperand(value: ThreeBit) extends Operand
 
 case class ComboOperand(id: ThreeBit) extends Operand {
-  def value(registers: Registers): BigInt =
+  def value(registers: Registers): Long =
     id match {
       case literal @ (0 | 1 | 2 | 3) => literal
       case 4                         => registers.A

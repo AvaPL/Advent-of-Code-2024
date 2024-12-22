@@ -14,7 +14,7 @@ Register C: $registerC
 
 Program: $program""" =>
         (
-          Registers(BigInt(registerA), BigInt(registerB), BigInt(registerC)),
+          Registers(registerA.toLong, registerB.toLong, registerC.toLong),
           program.splitBy(",").toVector.map(_.toThreeBit)
         )
     }

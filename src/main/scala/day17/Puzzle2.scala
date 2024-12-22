@@ -1,11 +1,12 @@
 package io.github.avapl
 package day17
 
+import java.lang.Long
 import scala.collection.mutable
 
 /** @note
   *   This isn't really a solution but an aggregation of (rather buggy and ugly) code that eventually led me to the
-  *   solution. It prints the correct answer but it's far from universal.
+  *   solution. It prints the correct answer but it's very far from being universal or efficient.
   */
 @main def puzzle2(): Unit = {
   val (_, program) = PuzzleInputParser.parsedInput
@@ -23,7 +24,7 @@ import scala.collection.mutable
     } yield List(i, j, k, l, m, n, o, p)
   }.view
     .map { leftmostOctets =>
-      BigInt((leftmostOctets ++ rightmostOctets).mkString, 8)
+      Long.parseLong((leftmostOctets ++ rightmostOctets).mkString, 8)
     }
     .find { registerA =>
       val output = runProgram(Registers(registerA, 0, 0), program)
@@ -58,8 +59,8 @@ private def findRightmostOctets(program: Program) = {
         partialSolution = Some(BigInt(registerABits, 2))
       case desiredOutput +: remainingOutput =>
         (0 to Integer.parseInt("1" * (10 - registerABitsSuffix.length), 2))
-          .map(prefix => Integer.parseInt(s"${prefix.toBinaryString}$registerABitsSuffix", 2))
-          .map(runNoLoopProgram(noLoopProgram))
+          .map(prefix => Long.parseLong(s"${prefix.toBinaryString}$registerABitsSuffix", 2))
+          .map(runNoLoopProgram(_, noLoopProgram))
           .collect {
             case (output, newRegisterABits, willContinueLoop)
                 if output == desiredOutput && remainingOutput.nonEmpty == willContinueLoop =>
@@ -79,7 +80,7 @@ private def findRightmostOctets(program: Program) = {
   partialSolution.get.toString(8).drop(3).map(_.asDigit)
 }
 
-private def runNoLoopProgram(program: Program)(registerA: Int) = {
+private def runNoLoopProgram(registerA: Long, program: Program) = {
   var registers = Registers(registerA, 0, 0)
   var instructionPointer = 0
   var output = Output.empty
@@ -97,7 +98,7 @@ private def runNoLoopProgram(program: Program)(registerA: Int) = {
     output = output ++ newOutput
   }
 
-  val registerABinary = registerA.toBinaryString
+  val registerABinary = Long.toBinaryString(registerA)
   val loop1IndexFromRight = registerABinary.reverse.drop(3).indexOf('1')
   val significantBits = registerAShift.max(loop1IndexFromRight + 1) + 3
   val willContinueLoop = loop1IndexFromRight >= 0
