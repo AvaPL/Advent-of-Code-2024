@@ -1,0 +1,33 @@
+flowchart LR
+
+cin@{ shape: framed-circle }
+x01:::x@{ shape: framed-circle }
+y01:::y@{ shape: framed-circle }
+z01:::z@{ shape: framed-circle }
+cout@{ shape: framed-circle }
+
+and1:::and@{ shape: delay, label: "AND" }
+and2:::and@{ shape: delay, label: "AND" }
+xor1:::xor@{ shape: delay, label: "XOR" }
+xor2:::xor@{ shape: delay, label: "XOR" }
+or1:::or@{ shape: delay, label: "OR" }
+
+cin -- cin --> xor1
+cin -- cin --> and1
+x01 -- x01 --> xor2
+x01 -- x01 --> and2
+y01 -- y01 --> xor2
+y01 -- y01 --> and2
+xor2 --> xor1
+xor2 --> and1
+xor1 -- z01 --> z01
+and1 --> or1
+and2 --> or1
+or1 -- cout --> cout
+
+classDef x stroke:#ff0
+classDef y stroke:#0ff
+classDef z stroke:#f0f
+classDef and stroke:#f00
+classDef xor stroke:#00f
+classDef or stroke:#0f0

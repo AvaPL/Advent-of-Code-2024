@@ -1,0 +1,859 @@
+flowchart LR
+
+x00:::x@{ shape: framed-circle }
+y00:::y@{ shape: framed-circle }
+x01:::x@{ shape: framed-circle }
+y01:::y@{ shape: framed-circle }
+x02:::x@{ shape: framed-circle }
+y02:::y@{ shape: framed-circle }
+x03:::x@{ shape: framed-circle }
+y03:::y@{ shape: framed-circle }
+x04:::x@{ shape: framed-circle }
+y04:::y@{ shape: framed-circle }
+x05:::x@{ shape: framed-circle }
+y05:::y@{ shape: framed-circle }
+x06:::x@{ shape: framed-circle }
+y06:::y@{ shape: framed-circle }
+x07:::x@{ shape: framed-circle }
+y07:::y@{ shape: framed-circle }
+x08:::x@{ shape: framed-circle }
+y08:::y@{ shape: framed-circle }
+x09:::x@{ shape: framed-circle }
+y09:::y@{ shape: framed-circle }
+x10:::x@{ shape: framed-circle }
+y10:::y@{ shape: framed-circle }
+x11:::x@{ shape: framed-circle }
+y11:::y@{ shape: framed-circle }
+x12:::x@{ shape: framed-circle }
+y12:::y@{ shape: framed-circle }
+x13:::x@{ shape: framed-circle }
+y13:::y@{ shape: framed-circle }
+x14:::x@{ shape: framed-circle }
+y14:::y@{ shape: framed-circle }
+x15:::x@{ shape: framed-circle }
+y15:::y@{ shape: framed-circle }
+x16:::x@{ shape: framed-circle }
+y16:::y@{ shape: framed-circle }
+x17:::x@{ shape: framed-circle }
+y17:::y@{ shape: framed-circle }
+x18:::x@{ shape: framed-circle }
+y18:::y@{ shape: framed-circle }
+x19:::x@{ shape: framed-circle }
+y19:::y@{ shape: framed-circle }
+x20:::x@{ shape: framed-circle }
+y20:::y@{ shape: framed-circle }
+x21:::x@{ shape: framed-circle }
+y21:::y@{ shape: framed-circle }
+x22:::x@{ shape: framed-circle }
+y22:::y@{ shape: framed-circle }
+x23:::x@{ shape: framed-circle }
+y23:::y@{ shape: framed-circle }
+x24:::x@{ shape: framed-circle }
+y24:::y@{ shape: framed-circle }
+x25:::x@{ shape: framed-circle }
+y25:::y@{ shape: framed-circle }
+x26:::x@{ shape: framed-circle }
+y26:::y@{ shape: framed-circle }
+x27:::x@{ shape: framed-circle }
+y27:::y@{ shape: framed-circle }
+x28:::x@{ shape: framed-circle }
+y28:::y@{ shape: framed-circle }
+x29:::x@{ shape: framed-circle }
+y29:::y@{ shape: framed-circle }
+x30:::x@{ shape: framed-circle }
+y30:::y@{ shape: framed-circle }
+x31:::x@{ shape: framed-circle }
+y31:::y@{ shape: framed-circle }
+x32:::x@{ shape: framed-circle }
+y32:::y@{ shape: framed-circle }
+x33:::x@{ shape: framed-circle }
+y33:::y@{ shape: framed-circle }
+x34:::x@{ shape: framed-circle }
+y34:::y@{ shape: framed-circle }
+x35:::x@{ shape: framed-circle }
+y35:::y@{ shape: framed-circle }
+x36:::x@{ shape: framed-circle }
+y36:::y@{ shape: framed-circle }
+x37:::x@{ shape: framed-circle }
+y37:::y@{ shape: framed-circle }
+x38:::x@{ shape: framed-circle }
+y38:::y@{ shape: framed-circle }
+x39:::x@{ shape: framed-circle }
+y39:::y@{ shape: framed-circle }
+x40:::x@{ shape: framed-circle }
+y40:::y@{ shape: framed-circle }
+x41:::x@{ shape: framed-circle }
+y41:::y@{ shape: framed-circle }
+x42:::x@{ shape: framed-circle }
+y42:::y@{ shape: framed-circle }
+x43:::x@{ shape: framed-circle }
+y43:::y@{ shape: framed-circle }
+x44:::x@{ shape: framed-circle }
+y44:::y@{ shape: framed-circle }
+classDef x stroke:#ff0
+classDef y stroke:#0ff
+
+gate0:::xor@{ shape: delay, label: "XOR" }
+gate1:::xor@{ shape: delay, label: "XOR" }
+gate2:::xor@{ shape: delay, label: "XOR" }
+gate3:::and@{ shape: delay, label: "AND" }
+gate4:::and@{ shape: delay, label: "AND" }
+gate5:::xor@{ shape: delay, label: "XOR" }
+gate6:::xor@{ shape: delay, label: "XOR" }
+gate7:::xor@{ shape: delay, label: "XOR" }
+gate8:::and@{ shape: delay, label: "AND" }
+gate9:::or@{ shape: delay, label: "OR" }
+gate10:::and@{ shape: delay, label: "AND" }
+gate11:::and@{ shape: delay, label: "AND" }
+gate12:::xor@{ shape: delay, label: "XOR" }
+gate13:::xor@{ shape: delay, label: "XOR" }
+gate14:::and@{ shape: delay, label: "AND" }
+gate15:::or@{ shape: delay, label: "OR" }
+gate16:::and@{ shape: delay, label: "AND" }
+gate17:::xor@{ shape: delay, label: "XOR" }
+gate18:::xor@{ shape: delay, label: "XOR" }
+gate19:::or@{ shape: delay, label: "OR" }
+gate20:::and@{ shape: delay, label: "AND" }
+gate21:::or@{ shape: delay, label: "OR" }
+gate22:::and@{ shape: delay, label: "AND" }
+gate23:::xor@{ shape: delay, label: "XOR" }
+gate24:::or@{ shape: delay, label: "OR" }
+gate25:::xor@{ shape: delay, label: "XOR" }
+gate26:::and@{ shape: delay, label: "AND" }
+gate27:::xor@{ shape: delay, label: "XOR" }
+gate28:::xor@{ shape: delay, label: "XOR" }
+gate29:::or@{ shape: delay, label: "OR" }
+gate30:::and@{ shape: delay, label: "AND" }
+gate31:::or@{ shape: delay, label: "OR" }
+gate32:::xor@{ shape: delay, label: "XOR" }
+gate33:::xor@{ shape: delay, label: "XOR" }
+gate34:::and@{ shape: delay, label: "AND" }
+gate35:::xor@{ shape: delay, label: "XOR" }
+gate36:::xor@{ shape: delay, label: "XOR" }
+gate37:::and@{ shape: delay, label: "AND" }
+gate38:::xor@{ shape: delay, label: "XOR" }
+gate39:::xor@{ shape: delay, label: "XOR" }
+gate40:::xor@{ shape: delay, label: "XOR" }
+gate41:::xor@{ shape: delay, label: "XOR" }
+gate42:::xor@{ shape: delay, label: "XOR" }
+gate43:::xor@{ shape: delay, label: "XOR" }
+gate44:::xor@{ shape: delay, label: "XOR" }
+gate45:::or@{ shape: delay, label: "OR" }
+gate46:::or@{ shape: delay, label: "OR" }
+gate47:::or@{ shape: delay, label: "OR" }
+gate48:::xor@{ shape: delay, label: "XOR" }
+gate49:::xor@{ shape: delay, label: "XOR" }
+gate50:::or@{ shape: delay, label: "OR" }
+gate51:::and@{ shape: delay, label: "AND" }
+gate52:::xor@{ shape: delay, label: "XOR" }
+gate53:::or@{ shape: delay, label: "OR" }
+gate54:::xor@{ shape: delay, label: "XOR" }
+gate55:::xor@{ shape: delay, label: "XOR" }
+gate56:::xor@{ shape: delay, label: "XOR" }
+gate57:::and@{ shape: delay, label: "AND" }
+gate58:::or@{ shape: delay, label: "OR" }
+gate59:::and@{ shape: delay, label: "AND" }
+gate60:::and@{ shape: delay, label: "AND" }
+gate61:::and@{ shape: delay, label: "AND" }
+gate62:::xor@{ shape: delay, label: "XOR" }
+gate63:::xor@{ shape: delay, label: "XOR" }
+gate64:::or@{ shape: delay, label: "OR" }
+gate65:::xor@{ shape: delay, label: "XOR" }
+gate66:::and@{ shape: delay, label: "AND" }
+gate67:::and@{ shape: delay, label: "AND" }
+gate68:::and@{ shape: delay, label: "AND" }
+gate69:::and@{ shape: delay, label: "AND" }
+gate70:::and@{ shape: delay, label: "AND" }
+gate71:::or@{ shape: delay, label: "OR" }
+gate72:::and@{ shape: delay, label: "AND" }
+gate73:::xor@{ shape: delay, label: "XOR" }
+gate74:::and@{ shape: delay, label: "AND" }
+gate75:::xor@{ shape: delay, label: "XOR" }
+gate76:::xor@{ shape: delay, label: "XOR" }
+gate77:::or@{ shape: delay, label: "OR" }
+gate78:::or@{ shape: delay, label: "OR" }
+gate79:::or@{ shape: delay, label: "OR" }
+gate80:::xor@{ shape: delay, label: "XOR" }
+gate81:::and@{ shape: delay, label: "AND" }
+gate82:::and@{ shape: delay, label: "AND" }
+gate83:::and@{ shape: delay, label: "AND" }
+gate84:::and@{ shape: delay, label: "AND" }
+gate85:::or@{ shape: delay, label: "OR" }
+gate86:::xor@{ shape: delay, label: "XOR" }
+gate87:::or@{ shape: delay, label: "OR" }
+gate88:::xor@{ shape: delay, label: "XOR" }
+gate89:::and@{ shape: delay, label: "AND" }
+gate90:::or@{ shape: delay, label: "OR" }
+gate91:::and@{ shape: delay, label: "AND" }
+gate92:::and@{ shape: delay, label: "AND" }
+gate93:::or@{ shape: delay, label: "OR" }
+gate94:::and@{ shape: delay, label: "AND" }
+gate95:::and@{ shape: delay, label: "AND" }
+gate96:::or@{ shape: delay, label: "OR" }
+gate97:::or@{ shape: delay, label: "OR" }
+gate98:::and@{ shape: delay, label: "AND" }
+gate99:::xor@{ shape: delay, label: "XOR" }
+gate100:::and@{ shape: delay, label: "AND" }
+gate101:::and@{ shape: delay, label: "AND" }
+gate102:::or@{ shape: delay, label: "OR" }
+gate103:::xor@{ shape: delay, label: "XOR" }
+gate104:::and@{ shape: delay, label: "AND" }
+gate105:::xor@{ shape: delay, label: "XOR" }
+gate106:::xor@{ shape: delay, label: "XOR" }
+gate107:::and@{ shape: delay, label: "AND" }
+gate108:::xor@{ shape: delay, label: "XOR" }
+gate109:::xor@{ shape: delay, label: "XOR" }
+gate110:::and@{ shape: delay, label: "AND" }
+gate111:::and@{ shape: delay, label: "AND" }
+gate112:::and@{ shape: delay, label: "AND" }
+gate113:::and@{ shape: delay, label: "AND" }
+gate114:::and@{ shape: delay, label: "AND" }
+gate115:::and@{ shape: delay, label: "AND" }
+gate116:::xor@{ shape: delay, label: "XOR" }
+gate117:::and@{ shape: delay, label: "AND" }
+gate118:::and@{ shape: delay, label: "AND" }
+gate119:::xor@{ shape: delay, label: "XOR" }
+gate120:::or@{ shape: delay, label: "OR" }
+gate121:::and@{ shape: delay, label: "AND" }
+gate122:::or@{ shape: delay, label: "OR" }
+gate123:::and@{ shape: delay, label: "AND" }
+gate124:::and@{ shape: delay, label: "AND" }
+gate125:::and@{ shape: delay, label: "AND" }
+gate126:::xor@{ shape: delay, label: "XOR" }
+gate127:::and@{ shape: delay, label: "AND" }
+gate128:::and@{ shape: delay, label: "AND" }
+gate129:::or@{ shape: delay, label: "OR" }
+gate130:::or@{ shape: delay, label: "OR" }
+gate131:::xor@{ shape: delay, label: "XOR" }
+gate132:::or@{ shape: delay, label: "OR" }
+gate133:::xor@{ shape: delay, label: "XOR" }
+gate134:::or@{ shape: delay, label: "OR" }
+gate135:::or@{ shape: delay, label: "OR" }
+gate136:::xor@{ shape: delay, label: "XOR" }
+gate137:::or@{ shape: delay, label: "OR" }
+gate138:::or@{ shape: delay, label: "OR" }
+gate139:::or@{ shape: delay, label: "OR" }
+gate140:::or@{ shape: delay, label: "OR" }
+gate141:::xor@{ shape: delay, label: "XOR" }
+gate142:::xor@{ shape: delay, label: "XOR" }
+gate143:::and@{ shape: delay, label: "AND" }
+gate144:::or@{ shape: delay, label: "OR" }
+gate145:::and@{ shape: delay, label: "AND" }
+gate146:::xor@{ shape: delay, label: "XOR" }
+gate147:::or@{ shape: delay, label: "OR" }
+gate148:::and@{ shape: delay, label: "AND" }
+gate149:::and@{ shape: delay, label: "AND" }
+gate150:::and@{ shape: delay, label: "AND" }
+gate151:::xor@{ shape: delay, label: "XOR" }
+gate152:::xor@{ shape: delay, label: "XOR" }
+gate153:::and@{ shape: delay, label: "AND" }
+gate154:::and@{ shape: delay, label: "AND" }
+gate155:::and@{ shape: delay, label: "AND" }
+gate156:::and@{ shape: delay, label: "AND" }
+gate157:::and@{ shape: delay, label: "AND" }
+gate158:::xor@{ shape: delay, label: "XOR" }
+gate159:::or@{ shape: delay, label: "OR" }
+gate160:::and@{ shape: delay, label: "AND" }
+gate161:::xor@{ shape: delay, label: "XOR" }
+gate162:::xor@{ shape: delay, label: "XOR" }
+gate163:::xor@{ shape: delay, label: "XOR" }
+gate164:::and@{ shape: delay, label: "AND" }
+gate165:::xor@{ shape: delay, label: "XOR" }
+gate166:::and@{ shape: delay, label: "AND" }
+gate167:::xor@{ shape: delay, label: "XOR" }
+gate168:::xor@{ shape: delay, label: "XOR" }
+gate169:::or@{ shape: delay, label: "OR" }
+gate170:::xor@{ shape: delay, label: "XOR" }
+gate171:::and@{ shape: delay, label: "AND" }
+gate172:::and@{ shape: delay, label: "AND" }
+gate173:::and@{ shape: delay, label: "AND" }
+gate174:::xor@{ shape: delay, label: "XOR" }
+gate175:::xor@{ shape: delay, label: "XOR" }
+gate176:::and@{ shape: delay, label: "AND" }
+gate177:::and@{ shape: delay, label: "AND" }
+gate178:::and@{ shape: delay, label: "AND" }
+gate179:::xor@{ shape: delay, label: "XOR" }
+gate180:::xor@{ shape: delay, label: "XOR" }
+gate181:::xor@{ shape: delay, label: "XOR" }
+gate182:::and@{ shape: delay, label: "AND" }
+gate183:::and@{ shape: delay, label: "AND" }
+gate184:::and@{ shape: delay, label: "AND" }
+gate185:::and@{ shape: delay, label: "AND" }
+gate186:::xor@{ shape: delay, label: "XOR" }
+gate187:::and@{ shape: delay, label: "AND" }
+gate188:::and@{ shape: delay, label: "AND" }
+gate189:::xor@{ shape: delay, label: "XOR" }
+gate190:::or@{ shape: delay, label: "OR" }
+gate191:::xor@{ shape: delay, label: "XOR" }
+gate192:::xor@{ shape: delay, label: "XOR" }
+gate193:::xor@{ shape: delay, label: "XOR" }
+gate194:::xor@{ shape: delay, label: "XOR" }
+gate195:::xor@{ shape: delay, label: "XOR" }
+gate196:::or@{ shape: delay, label: "OR" }
+gate197:::xor@{ shape: delay, label: "XOR" }
+gate198:::xor@{ shape: delay, label: "XOR" }
+gate199:::and@{ shape: delay, label: "AND" }
+gate200:::or@{ shape: delay, label: "OR" }
+gate201:::xor@{ shape: delay, label: "XOR" }
+gate202:::xor@{ shape: delay, label: "XOR" }
+gate203:::and@{ shape: delay, label: "AND" }
+gate204:::xor@{ shape: delay, label: "XOR" }
+gate205:::and@{ shape: delay, label: "AND" }
+gate206:::xor@{ shape: delay, label: "XOR" }
+gate207:::xor@{ shape: delay, label: "XOR" }
+gate208:::and@{ shape: delay, label: "AND" }
+gate209:::xor@{ shape: delay, label: "XOR" }
+gate210:::and@{ shape: delay, label: "AND" }
+gate211:::xor@{ shape: delay, label: "XOR" }
+gate212:::and@{ shape: delay, label: "AND" }
+gate213:::and@{ shape: delay, label: "AND" }
+gate214:::and@{ shape: delay, label: "AND" }
+gate215:::xor@{ shape: delay, label: "XOR" }
+gate216:::and@{ shape: delay, label: "AND" }
+gate217:::xor@{ shape: delay, label: "XOR" }
+gate218:::or@{ shape: delay, label: "OR" }
+gate219:::and@{ shape: delay, label: "AND" }
+gate220:::xor@{ shape: delay, label: "XOR" }
+gate221:::and@{ shape: delay, label: "AND" }
+classDef and stroke:#f00
+classDef xor stroke:#00f
+classDef or stroke:#0f0
+
+z00:::z@{ shape: framed-circle }
+z01:::z@{ shape: framed-circle }
+z02:::z@{ shape: framed-circle }
+z03:::z@{ shape: framed-circle }
+z04:::z@{ shape: framed-circle }
+z05:::z@{ shape: framed-circle }
+z06:::z@{ shape: framed-circle }
+z07:::z@{ shape: framed-circle }
+z08:::z@{ shape: framed-circle }
+z09:::z@{ shape: framed-circle }
+z10:::z@{ shape: framed-circle }
+z11:::z@{ shape: framed-circle }
+z12:::z@{ shape: framed-circle }
+z13:::z@{ shape: framed-circle }
+z14:::z@{ shape: framed-circle }
+z15:::z@{ shape: framed-circle }
+z16:::z@{ shape: framed-circle }
+z17:::z@{ shape: framed-circle }
+z18:::z@{ shape: framed-circle }
+z19:::z@{ shape: framed-circle }
+z20:::z@{ shape: framed-circle }
+z21:::z@{ shape: framed-circle }
+z22:::z@{ shape: framed-circle }
+z23:::z@{ shape: framed-circle }
+z24:::z@{ shape: framed-circle }
+z25:::z@{ shape: framed-circle }
+z26:::z@{ shape: framed-circle }
+z27:::z@{ shape: framed-circle }
+z28:::z@{ shape: framed-circle }
+z29:::z@{ shape: framed-circle }
+z30:::z@{ shape: framed-circle }
+z31:::z@{ shape: framed-circle }
+z32:::z@{ shape: framed-circle }
+z33:::z@{ shape: framed-circle }
+z34:::z@{ shape: framed-circle }
+z35:::z@{ shape: framed-circle }
+z36:::z@{ shape: framed-circle }
+z37:::z@{ shape: framed-circle }
+z38:::z@{ shape: framed-circle }
+z39:::z@{ shape: framed-circle }
+z40:::z@{ shape: framed-circle }
+z41:::z@{ shape: framed-circle }
+z42:::z@{ shape: framed-circle }
+z43:::z@{ shape: framed-circle }
+z44:::z@{ shape: framed-circle }
+z45:::z@{ shape: framed-circle }
+classDef z stroke:#f0f
+
+x00 -- x00 --> gate203
+x00 -- x00 --> gate206
+y00 -- y00 --> gate203
+y00 -- y00 --> gate206
+x01 -- x01 --> gate5
+x01 -- x01 --> gate216
+y01 -- y01 --> gate5
+y01 -- y01 --> gate216
+x02 -- x02 --> gate133
+x02 -- x02 --> gate150
+y02 -- y02 --> gate133
+y02 -- y02 --> gate150
+x03 -- x03 --> gate184
+x03 -- x03 --> gate186
+y03 -- y03 --> gate184
+y03 -- y03 --> gate186
+x04 -- x04 --> gate65
+x04 -- x04 --> gate107
+y04 -- y04 --> gate65
+y04 -- y04 --> gate107
+x05 -- x05 --> gate8
+x05 -- x05 --> gate17
+y05 -- y05 --> gate8
+y05 -- y05 --> gate17
+x06 -- x06 --> gate60
+x06 -- x06 --> gate175
+y06 -- y06 --> gate60
+y06 -- y06 --> gate175
+x07 -- x07 --> gate52
+x07 -- x07 --> gate112
+y07 -- y07 --> gate52
+y07 -- y07 --> gate112
+x08 -- x08 --> gate100
+x08 -- x08 --> gate165
+y08 -- y08 --> gate100
+y08 -- y08 --> gate165
+x09 -- x09 --> gate23
+x09 -- x09 --> gate82
+y09 -- y09 --> gate23
+y09 -- y09 --> gate82
+x10 -- x10 --> gate13
+x10 -- x10 --> gate110
+y10 -- y10 --> gate13
+y10 -- y10 --> gate110
+x11 -- x11 --> gate98
+x11 -- x11 --> gate192
+y11 -- y11 --> gate98
+y11 -- y11 --> gate192
+x12 -- x12 --> gate44
+x12 -- x12 --> gate155
+y12 -- y12 --> gate44
+y12 -- y12 --> gate155
+x13 -- x13 --> gate16
+x13 -- x13 --> gate189
+y13 -- y13 --> gate16
+y13 -- y13 --> gate189
+x14 -- x14 --> gate1
+x14 -- x14 --> gate214
+y14 -- y14 --> gate1
+y14 -- y14 --> gate214
+x15 -- x15 --> gate105
+x15 -- x15 --> gate176
+y15 -- y15 --> gate105
+y15 -- y15 --> gate176
+x16 -- x16 --> gate22
+x16 -- x16 --> gate42
+y16 -- y16 --> gate22
+y16 -- y16 --> gate42
+x17 -- x17 --> gate95
+x17 -- x17 --> gate194
+y17 -- y17 --> gate95
+y17 -- y17 --> gate194
+x18 -- x18 --> gate149
+x18 -- x18 --> gate161
+y18 -- y18 --> gate149
+y18 -- y18 --> gate161
+x19 -- x19 --> gate10
+x19 -- x19 --> gate220
+y19 -- y19 --> gate10
+y19 -- y19 --> gate220
+x20 -- x20 --> gate55
+x20 -- x20 --> gate57
+y20 -- y20 --> gate55
+y20 -- y20 --> gate57
+x21 -- x21 --> gate40
+x21 -- x21 --> gate66
+y21 -- y21 --> gate40
+y21 -- y21 --> gate66
+x22 -- x22 --> gate68
+x22 -- x22 --> gate191
+y22 -- y22 --> gate68
+y22 -- y22 --> gate191
+x23 -- x23 --> gate146
+x23 -- x23 --> gate156
+y23 -- y23 --> gate146
+y23 -- y23 --> gate156
+x24 -- x24 --> gate51
+x24 -- x24 --> gate201
+y24 -- y24 --> gate51
+y24 -- y24 --> gate201
+x25 -- x25 --> gate7
+x25 -- x25 --> gate171
+y25 -- y25 --> gate7
+y25 -- y25 --> gate171
+x26 -- x26 --> gate153
+x26 -- x26 --> gate163
+y26 -- y26 --> gate153
+y26 -- y26 --> gate163
+x27 -- x27 --> gate69
+x27 -- x27 --> gate167
+y27 -- y27 --> gate69
+y27 -- y27 --> gate167
+x28 -- x28 --> gate28
+x28 -- x28 --> gate94
+y28 -- y28 --> gate28
+y28 -- y28 --> gate94
+x29 -- x29 --> gate33
+x29 -- x29 --> gate123
+y29 -- y29 --> gate33
+y29 -- y29 --> gate123
+x30 -- x30 --> gate54
+x30 -- x30 --> gate92
+y30 -- y30 --> gate54
+y30 -- y30 --> gate92
+x31 -- x31 --> gate188
+x31 -- x31 --> gate215
+y31 -- y31 --> gate188
+y31 -- y31 --> gate215
+x32 -- x32 --> gate106
+x32 -- x32 --> gate111
+y32 -- y32 --> gate106
+y32 -- y32 --> gate111
+x33 -- x33 --> gate20
+x33 -- x33 --> gate32
+y33 -- y33 --> gate20
+y33 -- y33 --> gate32
+x34 -- x34 --> gate26
+x34 -- x34 --> gate88
+y34 -- y34 --> gate26
+y34 -- y34 --> gate88
+x35 -- x35 --> gate37
+x35 -- x35 --> gate174
+y35 -- y35 --> gate37
+y35 -- y35 --> gate174
+x36 -- x36 --> gate141
+x36 -- x36 --> gate182
+y36 -- y36 --> gate141
+y36 -- y36 --> gate182
+x37 -- x37 --> gate36
+x37 -- x37 --> gate157
+y37 -- y37 --> gate36
+y37 -- y37 --> gate157
+x38 -- x38 --> gate145
+x38 -- x38 --> gate197
+y38 -- y38 --> gate145
+y38 -- y38 --> gate197
+x39 -- x39 --> gate41
+x39 -- x39 --> gate183
+y39 -- y39 --> gate41
+y39 -- y39 --> gate183
+x40 -- x40 --> gate124
+x40 -- x40 --> gate217
+y40 -- y40 --> gate124
+y40 -- y40 --> gate217
+x41 -- x41 --> gate3
+x41 -- x41 --> gate43
+y41 -- y41 --> gate3
+y41 -- y41 --> gate43
+x42 -- x42 --> gate14
+x42 -- x42 --> gate198
+y42 -- y42 --> gate14
+y42 -- y42 --> gate198
+x43 -- x43 --> gate114
+x43 -- x43 --> gate162
+y43 -- y43 --> gate114
+y43 -- y43 --> gate162
+x44 -- x44 --> gate27
+x44 -- x44 --> gate104
+y44 -- y44 --> gate27
+y44 -- y44 --> gate104
+gate0 -- z32 --> z32
+gate2 -- z42 --> z42
+gate6 -- z21 --> z21
+gate12 -- z44 --> z44
+gate18 -- z36 --> z36
+gate19 -- z45 --> z45
+gate25 -- z33 --> z33
+gate35 -- z01 --> z01
+gate38 -- z37 --> z37
+gate39 -- z29 --> z29
+gate48 -- z13 --> z13
+gate49 -- z09 --> z09
+gate56 -- z26 --> z26
+gate62 -- z34 --> z34
+gate73 -- z18 --> z18
+gate75 -- z35 --> z35
+gate76 -- z02 --> z02
+gate78 -- z24 --> z24
+gate80 -- z03 --> z03
+gate86 -- z14 --> z14
+gate98 -- z11 --> z11
+gate99 -- z41 --> z41
+gate103 -- z25 --> z25
+gate108 -- z22 --> z22
+gate109 -- z27 --> z27
+gate116 -- z10 --> z10
+gate119 -- z05 --> z05
+gate126 -- z19 --> z19
+gate131 -- z06 --> z06
+gate136 -- z12 --> z12
+gate142 -- z16 --> z16
+gate151 -- z40 --> z40
+gate158 -- z39 --> z39
+gate168 -- z04 --> z04
+gate170 -- z30 --> z30
+gate179 -- z31 --> z31
+gate180 -- z15 --> z15
+gate181 -- z07 --> z07
+gate193 -- z43 --> z43
+gate195 -- z28 --> z28
+gate202 -- z20 --> z20
+gate204 -- z23 --> z23
+gate205 -- z38 --> z38
+gate206 -- z00 --> z00
+gate207 -- z17 --> z17
+gate211 -- z08 --> z08
+gate1 -- vvw --> gate86
+gate1 -- vvw --> gate187
+gate3 -- gwr --> gate93
+gate4 -- kpf --> gate169
+gate5 -- rbr --> gate35
+gate5 -- rbr --> gate117
+gate7 -- knp --> gate67
+gate7 -- knp --> gate103
+gate8 -- jcj --> gate130
+gate9 -- krq --> gate173
+gate9 -- krq --> gate211
+gate10 -- mfq --> gate144
+gate11 -- rvw --> gate97
+gate13 -- gtn --> gate116
+gate13 -- gtn --> gate125
+gate14 -- dmw --> gate45
+gate15 -- tkg --> gate62
+gate15 -- tkg --> gate219
+gate16 -- qkc --> gate29
+gate17 -- tjs --> gate119
+gate17 -- tjs --> gate177
+gate20 -- wmj --> gate15
+gate21 -- sch --> gate116
+gate21 -- sch --> gate125
+gate22 -- hbc --> gate102
+gate23 -- svf --> gate49
+gate23 -- svf --> gate91
+gate24 -- bhq --> gate48
+gate24 -- bhq --> gate154
+gate26 -- pbp --> gate58
+gate27 -- mjr --> gate12
+gate27 -- mjr --> gate101
+gate28 -- qdq --> gate122
+gate29 -- mgc --> gate86
+gate29 -- mgc --> gate187
+gate30 -- khj --> gate53
+gate31 -- dng --> gate179
+gate31 -- dng --> gate185
+gate32 -- dvf --> gate25
+gate32 -- dvf --> gate128
+gate33 -- fqc --> gate39
+gate33 -- fqc --> gate172
+gate34 -- stq --> gate47
+gate36 -- kbh --> gate38
+gate36 -- kbh --> gate164
+gate37 -- nsb --> gate218
+gate40 -- jkf --> gate6
+gate40 -- jkf --> gate213
+gate41 -- vvc --> gate70
+gate41 -- vvc --> gate158
+gate42 -- gnc --> gate61
+gate42 -- gnc --> gate142
+gate43 -- dgn --> gate99
+gate43 -- dgn --> gate166
+gate44 -- nvv --> gate136
+gate44 -- nvv --> gate178
+gate45 -- cjb --> gate72
+gate45 -- cjb --> gate193
+gate46 -- mrh --> gate0
+gate46 -- mrh --> gate11
+gate47 -- hqn --> gate38
+gate47 -- hqn --> gate164
+gate50 -- nbm --> gate61
+gate50 -- nbm --> gate142
+gate51 -- pwp --> gate78
+gate52 -- gpb --> gate83
+gate52 -- gpb --> gate181
+gate53 -- qvs --> gate89
+gate53 -- qvs --> gate152
+gate54 -- rdj --> gate118
+gate54 -- rdj --> gate170
+gate55 -- vtd --> gate148
+gate55 -- vtd --> gate202
+gate57 -- tsn --> gate196
+gate58 -- ngc --> gate75
+gate58 -- ngc --> gate113
+gate59 -- jnk --> gate122
+gate60 -- nfr --> gate85
+gate61 -- mfr --> gate102
+gate63 -- vkq --> gate169
+gate64 -- wfn --> gate30
+gate64 -- wfn --> gate204
+gate65 -- brf --> gate84
+gate65 -- brf --> gate168
+gate66 -- drv --> gate129
+gate67 -- jss --> gate132
+gate68 -- rvr --> gate64
+gate69 -- srb --> gate159
+gate70 -- qvm --> gate87
+gate71 -- hth --> gate70
+gate71 -- hth --> gate158
+gate72 -- wgc --> gate134
+gate74 -- jvt --> gate147
+gate77 -- ghq --> gate109
+gate77 -- ghq --> gate160
+gate79 -- gnn --> gate84
+gate79 -- gnn --> gate168
+gate81 -- jbf --> gate77
+gate82 -- thj --> gate21
+gate83 -- gmv --> gate9
+gate84 -- wfw --> gate190
+gate85 -- hdk --> gate83
+gate85 -- hdk --> gate181
+gate87 -- ssv --> gate74
+gate87 -- ssv --> gate151
+gate88 -- bpm --> gate62
+gate88 -- bpm --> gate219
+gate89 -- cwc --> gate78
+gate90 -- gbw --> gate76
+gate90 -- gbw --> gate212
+gate91 -- sqs --> gate21
+gate92 -- svg --> gate31
+gate93 -- bjt --> gate2
+gate93 -- bjt --> gate199
+gate94 -- pvb --> gate59
+gate94 -- pvb --> gate195
+gate95 -- jcs --> gate120
+gate96 -- vrp --> gate80
+gate96 -- vrp --> gate210
+gate97 -- fdj --> gate25
+gate97 -- fdj --> gate128
+gate100 -- wwb --> gate138
+gate101 -- tcg --> gate19
+gate102 -- mjp --> gate127
+gate102 -- mjp --> gate207
+gate104 -- fbd --> gate19
+gate105 -- mjc --> gate115
+gate105 -- mjc --> gate180
+gate106 -- bnc --> gate0
+gate106 -- bnc --> gate11
+gate107 -- qvq --> gate190
+gate110 -- jmb --> gate137
+gate111 -- jpk --> gate97
+gate112 -- qpn --> gate9
+gate113 -- hrj --> gate218
+gate114 -- cts --> gate134
+gate115 -- skb --> gate50
+gate117 -- nbf --> gate90
+gate118 -- rwc --> gate31
+gate120 -- jps --> gate73
+gate120 -- jps --> gate121
+gate121 -- hrb --> gate200
+gate122 -- ftq --> gate39
+gate122 -- ftq --> gate172
+gate123 -- jft --> gate139
+gate124 -- pqh --> gate147
+gate125 -- kbf --> gate137
+gate127 -- qbd --> gate120
+gate128 -- pft --> gate15
+gate129 -- shm --> gate108
+gate129 -- shm --> gate208
+gate130 -- cpw --> gate131
+gate130 -- cpw --> gate143
+gate132 -- svb --> gate56
+gate132 -- svb --> gate81
+gate133 -- vjb --> gate76
+gate133 -- vjb --> gate212
+gate134 -- wrg --> gate12
+gate134 -- wrg --> gate101
+gate135 -- vmb --> gate115
+gate135 -- vmb --> gate180
+gate137 -- sbs --> gate4
+gate137 -- sbs --> gate63
+gate138 -- thf --> gate49
+gate138 -- thf --> gate91
+gate139 -- frv --> gate118
+gate139 -- frv --> gate170
+gate140 -- dkp --> gate205
+gate140 -- dkp --> gate209
+gate141 -- vqg --> gate18
+gate141 -- vqg --> gate34
+gate143 -- knv --> gate85
+gate144 -- gnk --> gate148
+gate144 -- gnk --> gate202
+gate145 -- mdm --> gate71
+gate146 -- vgn --> gate30
+gate146 -- vgn --> gate204
+gate147 -- vwh --> gate99
+gate147 -- vwh --> gate166
+gate148 -- hbb --> gate196
+gate149 -- sds --> gate200
+gate150 -- bsv --> gate96
+gate152 -- mmk --> gate67
+gate152 -- mmk --> gate103
+gate153 -- ptp --> gate77
+gate154 -- crp --> gate29
+gate155 -- bbc --> gate24
+gate156 -- qsj --> gate53
+gate157 -- cdf --> gate140
+gate159 -- cct --> gate59
+gate159 -- cct --> gate195
+gate160 -- pkp --> gate159
+gate161 -- prm --> gate73
+gate161 -- prm --> gate121
+gate162 -- bjr --> gate72
+gate162 -- bjr --> gate193
+gate163 -- qmm --> gate56
+gate163 -- qmm --> gate81
+gate164 -- jpf --> gate140
+gate165 -- gjd --> gate173
+gate165 -- gjd --> gate211
+gate166 -- vgs --> gate93
+gate167 -- fnc --> gate109
+gate167 -- fnc --> gate160
+gate169 -- mks --> gate136
+gate169 -- mks --> gate178
+gate171 -- qwb --> gate132
+gate172 -- qhh --> gate139
+gate173 -- vkm --> gate138
+gate174 -- mqw --> gate75
+gate174 -- mqw --> gate113
+gate175 -- gqf --> gate131
+gate175 -- gqf --> gate143
+gate176 -- qdj --> gate50
+gate177 -- kfn --> gate130
+gate178 -- mjb --> gate24
+gate182 -- cfj --> gate47
+gate183 -- rbp --> gate87
+gate184 -- nst --> gate79
+gate185 -- crb --> gate46
+gate186 -- fkb --> gate80
+gate186 -- fkb --> gate210
+gate187 -- nmq --> gate135
+gate188 -- bgw --> gate46
+gate189 -- qdh --> gate48
+gate189 -- qdh --> gate154
+gate190 -- ncd --> gate119
+gate190 -- ncd --> gate177
+gate191 -- ssg --> gate108
+gate191 -- ssg --> gate208
+gate192 -- vbj --> gate4
+gate192 -- vbj --> gate63
+gate194 -- tcj --> gate127
+gate194 -- tcj --> gate207
+gate196 -- kmf --> gate6
+gate196 -- kmf --> gate213
+gate197 -- vsb --> gate205
+gate197 -- vsb --> gate209
+gate198 -- mmm --> gate2
+gate198 -- mmm --> gate199
+gate199 -- hgm --> gate45
+gate200 -- mft --> gate126
+gate200 -- mft --> gate221
+gate201 -- kmc --> gate89
+gate201 -- kmc --> gate152
+gate203 -- rnv --> gate35
+gate203 -- rnv --> gate117
+gate208 -- srj --> gate64
+gate209 -- hqh --> gate71
+gate210 -- hkh --> gate79
+gate212 -- vrn --> gate96
+gate213 -- nkj --> gate129
+gate214 -- jhd --> gate135
+gate215 -- pwd --> gate179
+gate215 -- pwd --> gate185
+gate216 -- hqp --> gate90
+gate217 -- hpg --> gate74
+gate217 -- hpg --> gate151
+gate218 -- pmk --> gate18
+gate218 -- pmk --> gate34
+gate219 -- cpb --> gate58
+gate220 -- wmp --> gate126
+gate220 -- wmp --> gate221
+gate221 -- ghg --> gate144
