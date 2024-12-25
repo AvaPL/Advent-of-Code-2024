@@ -17,8 +17,11 @@ type MermaidChart = String
   *   1. Check if the XOR gate from the previous step has Z wire on the output.
   *   1. Repeat from step 1.
   *
-  * If any of the checks fails, a swapped wire is found. This way, the swapped wires were found:
-  * hqh,mmk,pvb,qdq,vkq,z11,z24,z38
+  * If any of the checks fails, a swapped wire is found. There are two minor exceptions:
+  *   1. The first byte is output by a half adder (which doesn't have an OR gate).
+  *   1. The last byte is output by a carry from the last full adder's OR gate.
+  *
+  * This way, the swapped wires were found: hqh,mmk,pvb,qdq,vkq,z11,z24,z38
   *
   * @note
   *   Mermaid charts can be rendered via [[https://mermaid.live]].
