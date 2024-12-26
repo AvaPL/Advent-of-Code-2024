@@ -1,6 +1,8 @@
 package io.github.avapl
 package day21
 
+import scala.collection.mutable
+
 type Code = String
 
 case class Position(row: Int, column: Int) {
@@ -56,3 +58,107 @@ object Keypad {
     Right -> Position(1, 2)
   )
 }
+
+def calculateShortestSequencesLengths(codes: List[Code], numberOfDirectionalKeypads: Int) = {
+
+  val numericKeypadCache =
+    mutable.Map.empty[(NumericKeypadButton, NumericKeypadButton), Long]
+  val directionalKeypadsCache =
+    mutable.Map.empty[(Int, DirectionalKeypadButton, DirectionalKeypadButton), Long]
+
+  def findShortestSequence(
+      from: NumericKeypadButton,
+      to: NumericKeypadButton,
+      numberOfDirectionalKeypads: Int
+  ) = {
+
+    // numeric (0)
+    //    ^ robot
+    // keypad (1)
+    //    ^ robot
+    //
+    //    .
+    //    .
+    //    .
+    //
+    // keypad (n)
+    //    ^ me
+    def loop(
+        directionalKeypadButtons: Vector[DirectionalKeypadButton],
+        keypadNumber: Int
+    ): Long =
+      if (keypadNumber == 0) {
+        numericKeypadCache.getOrElseUpdate(
+          (from, to),
+          calculateButtonsPermutations(Keypad.numeric, from, to)
+            .map(nextDirectionalKeypadButtons => loop(nextDirectionalKeypadButtons, keypadNumber + 1))
+            .min
+        )
+      } else if (keypadNumber == numberOfDirectionalKeypads)
+        directionalKeypadButtons.length
+      else
+        (Action +: directionalKeypadButtons.init)
+          .zip(directionalKeypadButtons)
+          .map { (from, to) =>
+            directionalKeypadsCache.getOrElseUpdate(
+              (keypadNumber, from, to),
+              calculateButtonsPermutations(Keypad.directional, from, to)
+                .map(loop(_, keypadNumber + 1))
+                .min
+            )
+          }
+          .sum
+
+    loop(directionalKeypadButtons = Vector.empty, keypadNumber = 0)
+  }
+
+  codes.map { code =>
+    var currentNumericKeypadButton: NumericKeypadButton = Action
+
+    val myDirectionalButtonsLength = codeToNumericButtons(code).foldLeft(0L) {
+      (myDirectionalButtonsLength, nextNumericKeypadButton) =>
+        val shortestSequenceLength =
+          findShortestSequence(currentNumericKeypadButton, nextNumericKeypadButton, numberOfDirectionalKeypads)
+        currentNumericKeypadButton = nextNumericKeypadButton
+        myDirectionalButtonsLength + shortestSequenceLength
+    }
+
+    code -> myDirectionalButtonsLength
+  }.toMap
+}
+
+private def codeToNumericButtons(code: Code) =
+  code.map {
+    case 'A'   => Action
+    case digit => DigitButton(digit.asDigit)
+  }.toList
+
+private def calculateButtonsPermutations[KeypadButton <: KeypadElement](
+    keypad: Keypad[KeypadButton],
+    from: KeypadButton,
+    to: KeypadButton
+) = {
+  val initialRobotArmPosition = keypad(from)
+  val nextRobotArmPosition = keypad(to)
+  val rowDistance = nextRobotArmPosition.row - initialRobotArmPosition.row
+  val columnDistance = nextRobotArmPosition.column - initialRobotArmPosition.column
+  val movementUp = Vector.fill(-rowDistance)(Up)
+  val movementRight = Vector.fill(columnDistance)(Right)
+  val movementDown = Vector.fill(rowDistance)(Down)
+  val movementLeft = Vector.fill(-columnDistance)(Left)
+  (movementUp ++ movementRight ++ movementDown ++ movementLeft).permutations
+    .filterNot(reachesKeypadGap(keypad, initialRobotArmPosition))
+    .map(_ :+ Action)
+    .toList
+}
+
+private def reachesKeypadGap[KeypadButton <: KeypadElement](
+    keypad: Keypad[KeypadButton],
+    position: Position
+)(movements: Vector[DirectionalKeypadButton]) =
+  movements
+    .scanLeft(position)(_.move(_))
+    .contains(keypad(Gap))
+
+def calculateComplexity(code: Code, shortestSequenceLength: Long) =
+  shortestSequenceLength * code.init.toInt
