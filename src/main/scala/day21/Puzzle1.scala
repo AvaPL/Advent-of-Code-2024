@@ -55,7 +55,7 @@ private def findShortestSequence(from: NumericKeypadButton, to: NumericKeypadBut
       keypadNumber: Int
   ): Vector[DirectionalKeypadButton] =
     if (keypadNumber == 0)
-      numericToDirectionalButtonsPermutations(from, to)
+      calculateButtonsPermutations(Keypad.numeric, from, to)
         .map(nextDirectionalKeypadButtons => loop(nextDirectionalKeypadButtons, keypadNumber + 1))
         .minBy(_.length)
     else if (keypadNumber == 3)
@@ -64,7 +64,7 @@ private def findShortestSequence(from: NumericKeypadButton, to: NumericKeypadBut
       (Action +: directionalKeypadButtons.init)
         .zip(directionalKeypadButtons)
         .flatMap { (from, to) =>
-          directionalToDirectionalButtons(from, to)
+          calculateButtonsPermutations(Keypad.directional, from, to)
             .map(loop(_, keypadNumber + 1))
             .minBy(_.length)
         }
@@ -72,9 +72,13 @@ private def findShortestSequence(from: NumericKeypadButton, to: NumericKeypadBut
   loop(directionalKeypadButtons = Vector.empty, keypadNumber = 0)
 }
 
-private def numericToDirectionalButtonsPermutations(from: NumericKeypadButton, to: NumericKeypadButton) = {
-  val initialRobotArmPosition = Keypad.numeric(from)
-  val nextRobotArmPosition = Keypad.numeric(to)
+private def calculateButtonsPermutations[KeypadButton <: KeypadElement](
+    keypad: Keypad[KeypadButton],
+    from: KeypadButton,
+    to: KeypadButton
+) = {
+  val initialRobotArmPosition = keypad(from)
+  val nextRobotArmPosition = keypad(to)
   val rowDistance = nextRobotArmPosition.row - initialRobotArmPosition.row
   val columnDistance = nextRobotArmPosition.column - initialRobotArmPosition.column
   val movementUp = Vector.fill(-rowDistance)(Up)
@@ -82,35 +86,18 @@ private def numericToDirectionalButtonsPermutations(from: NumericKeypadButton, t
   val movementDown = Vector.fill(rowDistance)(Down)
   val movementLeft = Vector.fill(-columnDistance)(Left)
   (movementUp ++ movementRight ++ movementDown ++ movementLeft).permutations
-    .filterNot(reachesNumericKeypadGap(initialRobotArmPosition))
+    .filterNot(reachesKeypadGap(keypad, initialRobotArmPosition))
     .map(_ :+ Action)
     .toList
 }
 
-private def reachesNumericKeypadGap(position: Position)(movements: Vector[DirectionalKeypadButton]) =
+private def reachesKeypadGap[KeypadButton <: KeypadElement](
+    keypad: Keypad[KeypadButton],
+    position: Position
+)(movements: Vector[DirectionalKeypadButton]) =
   movements
     .scanLeft(position)(_.move(_))
-    .contains(Keypad.numeric(Gap))
-
-private def directionalToDirectionalButtons(from: DirectionalKeypadButton, to: DirectionalKeypadButton) = {
-  val initialRobotArmPosition = Keypad.directional(from)
-  val nextRobotArmPosition = Keypad.directional(to)
-  val rowDistance = nextRobotArmPosition.row - initialRobotArmPosition.row
-  val columnDistance = nextRobotArmPosition.column - initialRobotArmPosition.column
-  val movementUp = Vector.fill(-rowDistance)(Up)
-  val movementRight = Vector.fill(columnDistance)(Right)
-  val movementDown = Vector.fill(rowDistance)(Down)
-  val movementLeft = Vector.fill(-columnDistance)(Left)
-  (movementUp ++ movementRight ++ movementDown ++ movementLeft).permutations
-    .filterNot(reachesDirectionalKeypadGap(initialRobotArmPosition))
-    .map(_ :+ Action)
-    .toList
-}
-
-private def reachesDirectionalKeypadGap(position: Position)(movements: Vector[DirectionalKeypadButton]) =
-  movements
-    .scanLeft(position)(_.move(_))
-    .contains(Keypad.directional(Gap))
+    .contains(keypad(Gap))
 
 private def calculateComplexity(code: Code, shortestSequence: Vector[DirectionalKeypadButton]) =
   shortestSequence.length * code.init.toInt

@@ -29,10 +29,10 @@ case object Left extends DirectionalKeypadButton
 
 case object Action extends NumericKeypadButton with DirectionalKeypadButton
 
-type Keypad[T <: KeypadElement] = Map[T, Position]
+type Keypad[KeypadButton <: KeypadElement] = Map[KeypadButton | Gap.type, Position]
 
 object Keypad {
-  val numeric: Keypad[KeypadElement] = Map(
+  val numeric: Keypad[NumericKeypadButton] = Map(
     DigitButton(7) -> Position(0, 0),
     DigitButton(8) -> Position(0, 1),
     DigitButton(9) -> Position(0, 2),
@@ -47,7 +47,7 @@ object Keypad {
     Action -> Position(3, 2)
   )
 
-  val directional: Keypad[KeypadElement] = Map(
+  val directional: Keypad[DirectionalKeypadButton] = Map(
     Gap -> Position(0, 0),
     Up -> Position(0, 1),
     Action -> Position(0, 2),
